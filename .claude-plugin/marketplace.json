@@ -1,0 +1,12 @@
+{
+  "name": "komodo-deploy",
+  "owner": { "name": "BDvirus", "url": "https://github.com/BDvirus" },
+  "description": "Claude Code skill for deploying and operating Komodo (komo.do) stacks.",
+  "plugins": [
+    {
+      "name": "komodo-deploy",
+      "source": "./",
+      "description": "Deploy, pull, restart and inspect Komodo stacks, and onboard apps into a Komodo resource-sync repo."
+    }
+  ]
+}

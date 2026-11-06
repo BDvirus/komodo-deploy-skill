@@ -1,0 +1,10 @@
+{
+  "name": "komodo-deploy",
+  "description": "Deploy, pull, restart and inspect Komodo stacks, and onboard apps into a Komodo resource-sync repo.",
+  "version": "0.1.0",
+  "author": { "name": "BDvirus", "url": "https://github.com/BDvirus" },
+  "homepage": "https://github.com/BDvirus/komodo-deploy-skill",
+  "repository": "https://github.com/BDvirus/komodo-deploy-skill",
+  "license": "MIT",
+  "keywords": ["komodo", "docker", "compose", "deploy", "gitops", "homelab"]
+}

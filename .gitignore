@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pem
+*.crt
+.env
+.env.*
+*.local.toml
