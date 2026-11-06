@@ -93,7 +93,7 @@ class GitRemoteTest(unittest.TestCase):
 
 STACKS = [
     {"name": "web", "id": "1", "info": {"repo": "acme/web"}},
-    {"name": "edge-proxy", "id": "2", "info": {"repo": "acme/infra"}},
+    {"name": "reverse-proxy", "id": "2", "info": {"repo": "acme/infra"}},
     {"name": "monitoring", "id": "3", "info": {"repo": "acme/infra"}},
 ]
 
@@ -104,25 +104,25 @@ class MatchStacksTest(unittest.TestCase):
 
     def test_substring_fallback(self):
         names = [s["name"] for s in stacks.match_stacks(STACKS, "proxy", None)]
-        self.assertEqual(names, ["edge-proxy"])
+        self.assertEqual(names, ["reverse-proxy"])
 
     def test_match_by_repo_slug(self):
         names = [s["name"] for s in stacks.match_stacks(STACKS, None, "acme/infra")]
-        self.assertEqual(names, ["edge-proxy", "monitoring"])
+        self.assertEqual(names, ["reverse-proxy", "monitoring"])
 
     def test_no_query_returns_empty(self):
         self.assertEqual(stacks.match_stacks(STACKS, None, None), [])
 
 
 class MonoRepoTest(unittest.TestCase):
-    CANDIDATES = [({"name": "proxy"}, "edge-proxy"), ({"name": "mon"}, "monitoring/core"),
+    CANDIDATES = [({"name": "proxy"}, "reverse-proxy"), ({"name": "mon"}, "monitoring/core"),
                   ({"name": "mon-agent"}, "monitoring/core/agent"), ({"name": "root"}, "")]
 
     def pick(self, prefix):
         return [s["name"] for s in stacks.pick_by_run_directory(self.CANDIDATES, prefix)]
 
     def test_exact_run_directory(self):
-        self.assertEqual(self.pick("edge-proxy/"), ["proxy"])
+        self.assertEqual(self.pick("reverse-proxy/"), ["proxy"])
 
     def test_deepest_match_wins_from_subdirectory(self):
         self.assertEqual(self.pick("monitoring/core/agent/config/"), ["mon-agent"])
